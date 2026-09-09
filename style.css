@@ -1,0 +1,123 @@
+body{
+    background: url(IMG_5591.jpeg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction:column;
+    align-items: center;
+    background-blend-mode: blur(10px);
+    font-family: 'Segoe UI';
+    font-weight: 500;
+}
+
+h2{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    font-weight: 400;
+    color: lightblue;
+    text-wrap: wrap;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.links p{
+    font-weight: 400;
+    color: lightblue;
+    text-wrap: wrap;
+    text-align: center;
+}
+
+a:hover{
+    color: #0e799c;
+}
+
+.links{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.links a:last-child{
+    color: #4d0491;
+}
+
+.links a:last-child:hover{
+    color: #8400ff;
+}
+
+form{
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 15px;
+    border-radius: 8px;
+    width: 400px;
+    gap: 10px;
+    backdrop-filter: blur(10px);
+}
+
+input{
+    padding: 8px;
+    border-radius: 5px;
+    border: 0;
+    color: darkslategray;
+}
+textarea{
+    padding: 5px;
+    border-radius: 5px;
+    border: 0;
+    color: darkslategray;
+    height: 70px;
+    resize: vertical;
+}
+
+label{
+    color: rgb(24, 24, 24);
+    margin-bottom: -5px;
+}
+
+button{
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: blueviolet;
+    cursor: pointer;
+    border: 0;
+    width: 50%;
+    transition: all 0.3s ease;
+    animation: bounce 1.5s infinite alternate-reverse;
+}
+
+button:hover{
+    background-color: rgb(92, 5, 173);
+}
+
+div{
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes bounce {
+    from{
+        transform: translateY(0px);
+    }to{
+        transform: translateY(4px);
+    }
+}
+
+.messages p{
+    margin: 4px 0;
+}
+
+.messages.error p{
+    color: red;
+}
+
+.messages.success p{
+    color: green;
+}
