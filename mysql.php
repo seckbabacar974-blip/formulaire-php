@@ -6,7 +6,7 @@ function connexion(){
         ''
         );
         return $mysqlClient;
-    }catch (Exeption $e) {
+    }catch (Exception $e) {
         die("Erreur : " . $e->getMessage());
     }
 }

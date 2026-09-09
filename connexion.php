@@ -1,3 +1,8 @@
+<?php 
+    require_once 'mysql.php'; 
+    $pdo = connexion();
+?>
+
 <?php
     $erreur = [];
 
