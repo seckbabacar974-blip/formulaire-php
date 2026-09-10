@@ -1,3 +1,8 @@
+<?php 
+    // require 'mysql.php'; 
+    // $pdo = connexion();
+?>
+
 <?php
     $erreur = [];
 
@@ -10,27 +15,27 @@
 
 
         if($prenom === ''){
-            $erreur[] = "Le prénom est obligatoire.\n";
+            $erreur['prenom'] = "Le prénom est obligatoire.\n";
         }elseif(strlen($prenom) < 3){
-            $erreur[] = "Le prénom doit faire au moins 3 caractères.\n";
+            $erreur['prenom'] = "Le prénom doit faire au moins 3 caractères.\n";
         }
 
         if($nom === ''){
-            $erreur[] = "Le nom est obligatoire.\n";
+            $erreur['nom'] = "Le nom est obligatoire.\n";
         }elseif(strlen($nom) < 2){
-            $erreur[] = "Le nom doit faire au moins 2 caractères.\n";
+            $erreur['nom'] = "Le nom doit faire au moins 2 caractères.\n";
         }
 
         if($email === ''){
-            $erreur[] = "L'email est obligatoire.\n";
+            $erreur['email'] = "L'email est obligatoire.\n";
         }elseif(!filter_var($email,FILTER_VALIDATE_EMAIL)){
-            $erreur[] = "L'email n'est pas valide.\n";
+            $erreur['email'] = "L'email n'est pas valide.\n";
         }
 
         if(empty($password)){
-            $erreur[] = "Le mot de passe est obligatoire.\n";
+            $erreur['password'] = "Le mot de passe est obligatoire.\n";
         }elseif(strlen($password) < 8){
-            $erreur[] = "Le mot de passe doit faire au moins 8 caractères.\n";
+            $erreur['password'] = "Le mot de passe doit faire au moins 8 caractères.\n";
         }
     }
 ?>
@@ -46,29 +51,37 @@
 <body>
     <form action="" method="POST">
         <h2>S'inscrire</h2>
-        <label for="prenom">Prénom</label>
-        <input type="text" placeholder="Awa" name="prenom" id="prenom">
-        <label for="nom">Nom</label>
-        <input type="text" placeholder="Ndiaye" name="nom" id="nom">
+        <div class="nomcomplet">
+            <div class="content">
+                <label for="prenom">Prénom</label>
+                <input type="text" placeholder="Awa" name="prenom" id="prenom" value="<?php htmlspecialchars($prenom ?? '')?>">
+                <div class="messages error">
+                    <?= $erreur['prenom'] ?? '' ?>
+                </div>
+            </div>
+            <div class="content">
+                <label for="nom">Nom</label>
+                <input type="text" placeholder="Ndiaye" name="nom" id="nom" value="<?php htmlspecialchars($nom ?? '')?>">
+                <div class="messages error">
+                    <?= $erreur['nom'] ?? '' ?>
+                </div>
+            </div>
+        </div>
         <label for="email">Email</label>
-        <input type="email" placeholder="awandiaye@exemple.com" name="email" id="email">
+        <input type="text" placeholder="awandiaye@exemple.com" name="email" id="email" value="<?php htmlspecialchars($email ?? '')?>">
+        <div class="messages error">
+            <?= $erreur['email'] ?? '' ?>
+        </div>
         <label for="password">password</label>
         <input type="password" placeholder="Mot de passe" name="password" id="password">
-        <label for="message">Message</label>
-        <textarea name="message" id="message" placeholder="Votre message ..."></textarea>
+        <div class="messages error">
+            <?= $erreur['password'] ?? '' ?>
+        </div>
         <div class="submit">
             <button type="submit">S'inscrire</button>
         </div>
 
-        <?php if(!empty($erreur)): ?>
-            <div class="messages error">
-                <?php foreach($erreur as $e) : ?>
-                    <p>
-                        <?= $e ?>
-                    </p>
-                <?php endforeach; ?>
-            </div>
-        <?php elseif($_SERVER['REQUEST_METHOD'] === 'POST') : ?>
+        <?php if(empty($erreur)): ?>
             <div class="messages success">
                 <p>Inscription réussie !</p>
             </div>

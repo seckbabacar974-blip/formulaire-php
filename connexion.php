@@ -1,6 +1,6 @@
 <?php 
-    require_once 'mysql.php'; 
-    $pdo = connexion();
+    // require 'mysql.php'; 
+    // $pdo = connexion();
 ?>
 
 <?php
@@ -12,15 +12,15 @@
         $password = $_POST['password'];
 
         if($email === ''){
-            $erreur[] = "L'email est obligatoire.\n";
+            $erreur['email'] = "L'email est obligatoire.\n";
         }elseif(!filter_var($email,FILTER_VALIDATE_EMAIL)){
-            $erreur[] = "L'email n'est pas valide.\n";
+            $erreur['email'] = "L'email n'est pas valide.\n";
         }
 
         if(empty($password)){
-            $erreur[] = "Le mot de passe est obligatoire.\n";
+            $erreur['password'] = "Le mot de passe est obligatoire.\n";
         }elseif(strlen($password) < 8){
-            $erreur[] = "Le mot de passe doit faire au moins 8 caractères.\n";
+            $erreur['password'] = "Le mot de passe doit faire au moins 8 caractères.\n";
         }
     }
 ?>
@@ -37,23 +37,22 @@
     <form action="" method="POST">
         <h2>Se connecter</h2>
         <label for="email">Email</label>
-        <input type="text" placeholder="awadiouf@exemple.com" name="email" id="email">
+        <input type="text" placeholder="awadiouf@exemple.com" name="email" id="email" value="<?= htmlspecialchars($email ?? '')?>">
+        <div class="messages error">
+            <?= $erreur['email'] ?? '' ?>
+        </div>
         <label for="password">Mot de passe</label>
         <input type="password" placeholder="Mot de passe" name="password" id="password">
+        <?php if(!empty($erreur['password'])): ?>
+            <div class="messages error">
+            <?= $erreur['password'] ?? '' ?>
+            </div>
+        <?php endif; ?>
         <div>
             <button type="submit">Se connecter</button>
         </div>
 
-        <!-- Affichage -->
-        <?php if(!empty($erreur)): ?>
-            <div class="messages error">
-                <?php foreach($erreur as $e) : ?>
-                    <p>
-                        <?= $e ?>
-                    </p>
-                <?php endforeach; ?>
-            </div>
-        <?php elseif($_SERVER['REQUEST_METHOD'] === 'POST') : ?>
+        <?php if(empty($erreur)): ?>
             <div class="messages success">
                 <p>Connexion réussie !</p>
             </div>

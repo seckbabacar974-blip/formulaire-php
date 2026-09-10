@@ -40,6 +40,7 @@ a:hover{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;
 }
 
 .links a:last-child{
@@ -57,7 +58,6 @@ form{
     justify-content: start;
     padding: 15px;
     border-radius: 8px;
-    width: 400px;
     gap: 10px;
     backdrop-filter: blur(10px);
 }
@@ -110,14 +110,22 @@ div{
     }
 }
 
-.messages p{
-    margin: 4px 0;
-}
-
-.messages.error p{
+.messages.error {
     color: red;
 }
 
-.messages.success p{
-    color: green;
+.messages.success {
+    color: rgb(5, 211, 5);
+}
+
+.nomcomplet{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nomcomplet .content{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
