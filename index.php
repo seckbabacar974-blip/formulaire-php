@@ -81,11 +81,15 @@
             <button type="submit">S'inscrire</button>
         </div>
 
-        <?php if(empty($erreur)): ?>
-            <div class="messages success">
-                <p>Inscription réussie !</p>
-            </div>
+        <?php if($_SERVER['REQUEST_METHOD'] === 'POST') : ?>
+                <?php if(empty($erreur)): ?>
+                    <div class="messages success">
+                        <p>Inscription réussie !</p>
+                    </div>
+                <?php endif; ?>
         <?php endif; ?>
+        
+        
 
         <div class="links">
             <p>Vous avez déjà un compte ?</p>
